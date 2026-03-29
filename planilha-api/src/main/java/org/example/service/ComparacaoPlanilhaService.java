@@ -11,7 +11,9 @@ import org.example.repository.ComparacaoPlanilhaRepository;
 import org.example.repository.HistoricoComparacaoPlanilhasRepository;
 import org.example.repository.ScoreComparacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class ComparacaoPlanilhaService {
@@ -78,5 +80,10 @@ public class ComparacaoPlanilhaService {
 
     public List<ComparacaoPlanilha> findAll(){
         return comparacaoPlanilhaRepository.findAll();
+    }
+
+    public ComparacaoPlanilha findById(String id){
+        return comparacaoPlanilhaRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "ComparacaoPlanilha not found"));
     }
 }

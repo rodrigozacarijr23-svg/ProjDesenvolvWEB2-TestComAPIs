@@ -25,4 +25,9 @@ public class ComparacaoPlanilhaController {
     public List<ComparacaoPlanilha> findAll(){
         return comparacaoPlanilhaService.findAll();
     }
+    
+    @GetMapping("/myproject/api/v1/comparacao-planilha/{id}")
+    public ComparacaoPlanilha findById(@PathVariable String id){
+        return comparacaoPlanilhaService.findById(id);
+    }
 }
