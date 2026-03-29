@@ -1,9 +1,12 @@
 package org.example.model;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class Usuario {
     @Id
     private String id;
@@ -11,8 +14,10 @@ public class Usuario {
     private String nome;
     @NotEmpty
     private String telefone;
-    @NotEmpty
+    @NotNull
     private Endereco endereco;
+
+    public Usuario() {}
 
     public String getId() {
         return id;

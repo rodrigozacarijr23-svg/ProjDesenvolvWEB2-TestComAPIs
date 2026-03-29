@@ -10,7 +10,7 @@ public class UsuarioClient {
     private final RestTemplate restTemplate = new RestTemplate();
 
     public Usuario buscarUsuario(String id){
-        String url = "http://localhost:8082/api/usuario/" + id;
+        String url = "http://localhost:8082/myproject/api/v1/usuarios/" + id;
         return restTemplate.getForObject(url, Usuario.class);
     }
 }

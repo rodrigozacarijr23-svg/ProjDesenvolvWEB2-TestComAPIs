@@ -1,6 +1,9 @@
 package org.example.model;
 
 import org.springframework.data.annotation.Id;
+
+import java.time.LocalDate;
+
 import javax.validation.constraints.NotEmpty;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,7 +15,7 @@ public class HistoricoComparacaoPlanilhas {
     @NotEmpty
     private ComparacaoPlanilha comparacaoPlanilha;
     @NotEmpty
-    private ComparacaoPlanilha data;
+    private LocalDate data;
 
     public String getId() {
         return id;
@@ -26,10 +29,10 @@ public class HistoricoComparacaoPlanilhas {
     public void setComparacaoPlanilha(ComparacaoPlanilha comparacaoPlanilha) {
         this.comparacaoPlanilha = comparacaoPlanilha;
     }
-    public ComparacaoPlanilha getData() {
+    public LocalDate getData() {
         return data;
     }
-    public void setData(ComparacaoPlanilha data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 }

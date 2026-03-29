@@ -33,4 +33,7 @@ public class PlanilhaService {
     public List<Planilha> findAll(){
         return planilhaRepository.findAll();
     }
+    public Planilha findById(String id){
+        return planilhaRepository.findById(id).orElse(null);
+    }
 }

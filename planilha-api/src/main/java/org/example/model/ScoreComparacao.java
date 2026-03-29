@@ -1,7 +1,11 @@
 package org.example.model;
 
 import org.springframework.data.annotation.Id;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -11,7 +15,8 @@ public class ScoreComparacao {
     private String id;
     @NotEmpty
     private String descricao;
-    @NotEmpty
+    @Min(0)
+    @Max(100)
     private int score;
 
     public String getId() {
