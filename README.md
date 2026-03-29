@@ -1,147 +1,103 @@
-# 📌 ProjDesenvolvWEB2-TestComAPIs
+# ProjDesenvolvWEB2-TestComAPIs
 
-Repositório de **APIs REST em Java com Spring Boot**, com persistência de dados via MongoDB e documentação via Swagger/OpenAPI.  
-
-O projeto contém duas APIs principais:
-
-- **Usuario API** – gerenciamento de usuários  
-- **Planilha API** – gerenciamento de dados estruturados (planilhas)
+Projeto de teste de integração com APIs REST para gerenciamento de usuários, planilhas e comparações. Desenvolvido como atividade prática do curso de Desenvolvimento Web 2.
 
 ---
 
-## 🧩 Estrutura do Projeto
+## 🔹 Objetivo
 
+- Criar e gerenciar usuários com dados pessoais e endereço.
+- Criar planilhas vinculadas a usuários.
+- Comparar planilhas, gerando scores e histórico de comparações.
+- Testar e consumir APIs REST usando uma interface web intuitiva.
+
+---
+
+## 🔹 Tecnologias Utilizadas
+
+- **Front-end:** HTML, CSS, JavaScript
+- **Back-end:** APIs REST (simuladas em servidores locais)
+- **Ferramentas:** VS Code para edição de código, GitHub para versionamento
+
+---
+
+## 🔹 Estrutura do Projeto
+
+```
 ProjDesenvolvWEB2-TestComAPIs/
-├── usuario-api/              
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/...       # Código fonte Java
-│   │   │   └── resources/     # Configurações (application.properties)
-│   │   └── test/              # Testes unitários
-│   └── pom.xml                
-├── planilha-api/              
-│   └── ...
-├── README.md                 
-└── .gitignore
+│
+├─ index.html       # Página principal com interface para testes de API
+├─ script.js        # Lógica de interação com APIs
+├─ style.css        # Estilos visuais do projeto
+└─ README.md        # Documentação do projeto
+```
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## 🔹 Funcionalidades
 
-- **Java 17+**  
-- **Spring Boot**  
-  - Spring Web  
-  - Spring Data MongoDB  
-- **Maven**  
-- **Swagger/OpenAPI**  
-- **MongoDB**  
+### Usuário
+- Criar usuário com nome, telefone e endereço completo.
+- Listar todos os usuários.
+- Buscar usuário por ID.
 
----
+### Planilha
+- Criar planilha vinculada a um usuário.
+- Listar todas as planilhas.
+- Buscar planilha por ID.
 
-## ▶️ Como Rodar
-
-1. Clone o repositório:
-
-git clone https://github.com/rodrigozacarijr23-svg/ProjDesenvolvWEB2-TestComAPIs.git
-
-2. Entre na pasta da API desejada:
-
-cd ProjDesenvolvWEB2-TestComAPIs/usuario-api
-
-3. Configure o MongoDB em `src/main/resources/application.properties`:
-
-spring.data.mongodb.host=localhost
-spring.data.mongodb.port=27017
-spring.data.mongodb.database=contadb
-
-4. Rode a aplicação:
-
-mvn clean spring-boot:run
-
-ou
-
-mvn clean package
-java -jar target/*.jar
-
-5. Acesse o Swagger UI para testar os endpoints:
-
-http://localhost:8082/swagger-ui/index.html
+### Comparação
+- Comparar duas planilhas selecionadas.
+- Visualizar histórico e score das comparações.
+- Listar histórico e scores completos ou por ID.
 
 ---
 
-## 🌐 Endpoints – Usuario API
+## 🔹 Visualização dos Resultados
 
-| Método | Caminho | Descrição |
-|--------|---------|-----------|
-| GET    | /myproject/api/v1/usuarios      | Lista todos os usuários |
-| POST   | /myproject/api/v1/usuarios      | Cria novo usuário |
-| GET    | /myproject/api/v1/usuarios/{id} | Consulta usuário por ID |
-| PUT    | /myproject/api/v1/usuarios/{id} | Atualiza usuário por ID |
-| DELETE | /myproject/api/v1/usuarios/{id} | Remove usuário por ID |
+- Resultados podem ser exibidos em **JSON** ou em **formato de tabela legível**.
+- Interface com **abas separadas** para criar usuários, planilhas e comparações, mantendo a tela organizada.
+- Dados complexos e objetos aninhados são renderizados de forma estruturada e fácil de ler.
 
-**Exemplo de POST (JSON no body):**
+Exemplo de saída em formato "tabela legível":
 
-{
-  "nome": "Rodrigo",
-  "telefone": "999999999",
-  "endereco": {
-    "logradouro": "Rua A",
-    "cidade": "Matao",
-    "bairro": "Centro",
-    "cep": "15990-000",
-    "numero": "123"
-  }
-}
-
-> ⚠️ Sempre envie JSON no corpo da requisição; não use query params para objetos complexos.
+**Usuário 1:**
+```
+id: 69c955820d20ea3b8131e3b7
+nome: Rodrigo
+telefone: 16999999999
+Endereço:
+  logradouro: Rua A
+  cidade: Araraquara
+  numero: 123
+  cep: 14800000
+  bairro: Centro
+```
 
 ---
 
-## 🌐 Endpoints – Planilha API
+## 🔹 Como Utilizar
 
-| Método | Caminho | Descrição |
-|--------|---------|-----------|
-| GET    | /myproject/api/v1/planilhas   | Lista todas planilhas |
-| POST   | /myproject/api/v1/planilhas   | Cria nova planilha |
-| GET    | /myproject/api/v1/planilhas/{id} | Consulta planilha por ID |
-| PUT    | /myproject/api/v1/planilhas/{id} | Atualiza planilha por ID |
-| DELETE | /myproject/api/v1/planilhas/{id} | Remove planilha por ID |
+1. Abra o arquivo `index.html` em qualquer navegador moderno.
+2. Use as abas para criar usuários, planilhas e comparações.
+3. Escolha entre visualização em **JSON** ou **Tabela** para facilitar a leitura dos dados.
+4. As ações interagem com os endpoints configurados nas variáveis:
 
----
-
-## 🧪 Testes
-
-Execute os testes unitários e de integração:
-
-mvn test
+```javascript
+const APIUsuarios = "http://localhost:8082/myproject/api/v1";
+const APIPlanilhas = "http://localhost:8081/myproject/api/v1";
+```
 
 ---
 
-## 💾 Banco de Dados
+## 🔹 Observações
 
-Configuração básica MongoDB (`application.properties`):
-
-spring.data.mongodb.host=localhost
-spring.data.mongodb.port=27017
-spring.data.mongodb.database=contadb
+- Certifique-se de que os servidores das APIs estão rodando antes de usar a interface.
+- Projeto focado em manipulação de dados JSON aninhados e renderização clara no front-end.
+- Código preparado para testes práticos de APIs REST e visualização de resultados complexos.
 
 ---
 
-## ⚡ Fluxo de Funcionamento
+## 🔹 Licença
 
-[Cliente / Swagger] 
-        │
-        ▼
-    POST /usuarios
-        │
-        ▼
-[UsuarioController] → [UsuarioService] → [UsuarioRepository] → [MongoDB]
-        │
-        ▼
-    GET /usuarios
-
----
-
-## 📜 Licença
-
-Projeto aberto para estudo. Pode ser usado, copiado ou modificado citando autoria.
+Projeto destinado a fins educacionais e demonstrativos.
