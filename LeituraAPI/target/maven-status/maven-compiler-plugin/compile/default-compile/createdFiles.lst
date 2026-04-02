@@ -1,9 +1,0 @@
-org\example\controller\UsuarioController.class
-org\example\Main.class
-org\example\service\EnderecoService.class
-org\example\service\UsuarioService.class
-org\example\controller\EnderecoController.class
-org\example\model\Endereco.class
-org\example\model\Usuario.class
-org\example\repository\UsuarioRepository.class
-org\example\repository\EnderecoRepository.class

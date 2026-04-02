@@ -12,6 +12,6 @@ target/
 *.xlsx
 *.log
 
-# OS
+# Sistema
 .DS_Store
 Thumbs.db
