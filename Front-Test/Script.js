@@ -1,5 +1,6 @@
 const APIUsuarios = "http://localhost:8082/myproject/api/v1";
 const APIPlanilhas = "http://localhost:8081/myproject/api/v1";
+const APIImportacao = "http://localhost:8080/myproject/api/v1";
 
 // Função para alternar abas
 function openTab(tabId) {
@@ -145,7 +146,7 @@ async function criarPlanilha() {
         // Se o campo 1 estiver vazio, coloca nele
         if (!planilha1.value) {
             planilha1.value = data.id;
-        } 
+        }
         // Se o campo 1 estiver cheio e campo 2 vazio, coloca no campo 2
         else if (!planilha2.value) {
             planilha2.value = data.id;
@@ -292,9 +293,32 @@ async function buscarComparacaoPorId(id) {
         alert("❌ Erro ao buscar comparação por ID");
     }
 }
+async function importarUsuarios() {
+    const input = document.getElementById("arquivoExcel");
+    const file = input.files[0];
 
-// ================== UTIL ==================
-function mostrarResultado(data) {
-    document.getElementById("resultado").innerText =
-        JSON.stringify(data, null, 2);
+    if (!file) {
+        alert("❌ Selecione um arquivo!");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file); // pode ser qualquer nome
+
+    try {
+        const response = await fetch(`${APIImportacao}/importacao/upload`, {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        mostrarResultado(data);
+
+        alert(`✅ ${data.length} usuários importados com sucesso!`);
+
+    } catch (err) {
+        console.error(err);
+        alert("❌ Erro ao importar usuários");
+    }
 }

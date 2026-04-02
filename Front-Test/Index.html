@@ -1,78 +1,87 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Teste API - Projeto WEB 2</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h1>🚀 Teste da API</h1>
+    <h1>🚀 Teste da API</h1>
 
-<div class="tabs">
-    <button class="tablink active" onclick="openTab('tabUsuario')">Usuário</button>
-    <button class="tablink" onclick="openTab('tabPlanilha')">Planilha</button>
-    <button class="tablink" onclick="openTab('tabComparacao')">Comparação</button>
-    <button class="tablink" onclick="openTab('tabListagens')">Listagens</button>
-</div>
+    <div class="tabs">
+        <button class="tablink active" onclick="openTab('tabUsuario')">Usuário</button>
+        <button class="tablink" onclick="openTab('tabPlanilha')">Planilha</button>
+        <button class="tablink" onclick="openTab('tabComparacao')">Comparação</button>
+        <button class="tablink" onclick="openTab('tabListagens')">Listagens</button>
+    </div>
 
-<!-- ================== USUÁRIO ================== -->
-<div id="tabUsuario" class="tabcontent active">
-    <h2>👤 Criar Usuário</h2>
-    <input type="text" id="nomeUsuario" placeholder="Nome">
-    <input type="text" id="telefoneUsuario" placeholder="Telefone">
-    <h3>📍 Endereço</h3>
-    <input type="text" id="logradouroUsuario" placeholder="Logradouro">
-    <input type="text" id="numeroUsuario" placeholder="Número">
-    <input type="text" id="bairroUsuario" placeholder="Bairro">
-    <input type="text" id="cidadeUsuario" placeholder="Cidade">
-    <input type="text" id="cepUsuario" placeholder="CEP">
-    <button onclick="criarUsuario()">Criar Usuário</button>
-</div>
+    <!-- ================== USUÁRIO ================== -->
+    <div id="tabUsuario" class="tabcontent active">
+        <h2>👤 Criar Usuário</h2>
+        <input type="text" id="nomeUsuario" placeholder="Nome">
+        <input type="text" id="telefoneUsuario" placeholder="Telefone">
+        <h3>📍 Endereço</h3>
+        <input type="text" id="logradouroUsuario" placeholder="Logradouro">
+        <input type="text" id="numeroUsuario" placeholder="Número">
+        <input type="text" id="bairroUsuario" placeholder="Bairro">
+        <input type="text" id="cidadeUsuario" placeholder="Cidade">
+        <input type="text" id="cepUsuario" placeholder="CEP">
+        <button onclick="criarUsuario()">Criar Usuário</button>
+        <hr>
+        <h2>📤 Importar Usuários via Excel</h2>
+        <input type="file" id="arquivoExcel" accept=".xlsx,.xls">
+        <button onclick="importarUsuarios()">Importar Usuários</button>
+    </div>
 
-<!-- ================== PLANILHA ================== -->
-<div id="tabPlanilha" class="tabcontent">
-    <h2>📄 Criar Planilha</h2>
-    <input type="text" id="nomePlanilha" placeholder="Nome">
-    <input type="number" id="tamArquivo" placeholder="Tamanho do Arquivo (KB)">
-    <input type="number" id="linhas" placeholder="Linhas">
-    <input type="number" id="colunas" placeholder="Colunas">
-    <input type="text" id="usuarioId" placeholder="ID do Usuário">
-    <button onclick="criarPlanilha()">Criar Planilha</button>
-</div>
+    <!-- ================== PLANILHA ================== -->
+    <div id="tabPlanilha" class="tabcontent">
+        <h2>📄 Criar Planilha</h2>
+        <input type="text" id="nomePlanilha" placeholder="Nome">
+        <input type="number" id="tamArquivo" placeholder="Tamanho do Arquivo (KB)">
+        <input type="number" id="linhas" placeholder="Linhas">
+        <input type="number" id="colunas" placeholder="Colunas">
+        <input type="text" id="usuarioId" placeholder="ID do Usuário">
+        <button onclick="criarPlanilha()">Criar Planilha</button>
+    </div>
 
-<!-- ================== COMPARAÇÃO ================== -->
-<div id="tabComparacao" class="tabcontent">
-    <h2>🔍 Criar Comparação</h2>
-    <input type="text" id="planilha1" placeholder="ID Planilha 1">
-    <input type="text" id="planilha2" placeholder="ID Planilha 2">
-    <button onclick="criarComparacao()">Comparar</button>
-</div>
+    <!-- ================== COMPARAÇÃO ================== -->
+    <div id="tabComparacao" class="tabcontent">
+        <h2>🔍 Criar Comparação</h2>
+        <input type="text" id="planilha1" placeholder="ID Planilha 1">
+        <input type="text" id="planilha2" placeholder="ID Planilha 2">
+        <button onclick="criarComparacao()">Comparar</button>
+    </div>
 
-<!-- ================== LISTAGENS ================== -->
-<div id="tabListagens" class="tabcontent">
-    <h2>📊 Listagens</h2>
+    <!-- ================== LISTAGENS ================== -->
+    <div id="tabListagens" class="tabcontent">
+        <h2>📊 Listagens</h2>
 
-    <label><input type="radio" name="saida" value="json" checked> JSON</label>
-    <label><input type="radio" name="saida" value="tabela"> Tabela</label>
+        <label><input type="radio" name="saida" value="json" checked> JSON</label>
+        <label><input type="radio" name="saida" value="tabela"> Tabela</label>
 
-    <h3>🔍 Buscar Tudo</h3>
-    <button onclick="listarComparacoes()">Listar Comparações</button>
-    <button onclick="listarHistorico()">Listar Histórico</button>
-    <button onclick="listarScores()">Listar Scores</button>
-    <button onclick="listarUsuarios()">Listar Usuários</button>
+        <h3>🔍 Buscar Tudo</h3>
+        <button onclick="listarComparacoes()">Listar Comparações</button>
+        <button onclick="listarHistorico()">Listar Histórico</button>
+        <button onclick="listarScores()">Listar Scores</button>
+        <button onclick="listarUsuarios()">Listar Usuários</button>
 
-    <h3>🔎 Buscar por ID</h3>
-    <input type="text" id="buscaId" placeholder="Digite o ID">
-    <button onclick="buscarComparacaoPorId(document.getElementById('buscaId').value.trim())">Buscar Comparação</button>
-    <button onclick="buscarHistoricoPorId(document.getElementById('buscaId').value.trim())">Buscar Histórico</button>
-    <button onclick="buscarScorePorId(document.getElementById('buscaId').value.trim())">Buscar Score</button>
-    <button onclick="buscarUsuarioPorId(document.getElementById('buscaId').value.trim())">Buscar Usuário</button>
-</div>
+        <h3>🔎 Buscar por ID</h3>
+        <input type="text" id="buscaId" placeholder="Digite o ID">
+        <button onclick="buscarComparacaoPorId(document.getElementById('buscaId').value.trim())">Buscar
+            Comparação</button>
+        <button onclick="buscarHistoricoPorId(document.getElementById('buscaId').value.trim())">Buscar
+            Histórico</button>
+        <button onclick="buscarScorePorId(document.getElementById('buscaId').value.trim())">Buscar Score</button>
+        <button onclick="buscarUsuarioPorId(document.getElementById('buscaId').value.trim())">Buscar Usuário</button>
+    </div>
 
-<h2>📈 Resultado</h2>
-<div id="resultado"></div>
+    <h2>📈 Resultado</h2>
+    <div id="resultado"></div>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
