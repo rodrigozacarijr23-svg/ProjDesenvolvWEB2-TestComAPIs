@@ -1,103 +1,246 @@
-# ProjDesenvolvWEB2-TestComAPIs
+# 📊 Sistema de Importação e Comparação de Planilhas com API de Usuários
 
-Projeto de teste de integração com APIs REST para gerenciamento de usuários, planilhas e comparações. Desenvolvido como atividade prática do curso de Desenvolvimento Web 2.
+## 🚀 Sobre o Projeto
 
----
+Este projeto consiste em um sistema completo que permite:
 
-## 🔹 Objetivo
+* 📥 Upload de planilhas Excel
+* 🔄 Conversão automática para JSON
+* 👤 Criação de usuários em massa via API
+* 📊 Visualização dos dados em tabela e JSON
+* 🔗 Integração entre múltiplas APIs
 
-- Criar e gerenciar usuários com dados pessoais e endereço.
-- Criar planilhas vinculadas a usuários.
-- Comparar planilhas, gerando scores e histórico de comparações.
-- Testar e consumir APIs REST usando uma interface web intuitiva.
-
----
-
-## 🔹 Tecnologias Utilizadas
-
-- **Front-end:** HTML, CSS, JavaScript
-- **Back-end:** APIs REST (simuladas em servidores locais)
-- **Ferramentas:** VS Code para edição de código, GitHub para versionamento
+O sistema foi desenvolvido com foco em simular um cenário real de aplicações empresariais, onde dados precisam ser importados, tratados e persistidos de forma automatizada.
 
 ---
 
-## 🔹 Estrutura do Projeto
+## 🛠️ Tecnologias Utilizadas
+
+### Backend
+
+* Java + Spring Boot
+* Maven
+* REST API
+
+### Frontend
+
+* HTML5
+* CSS3
+* JavaScript (Fetch API)
+
+---
+
+## 📂 Estrutura do Projeto
 
 ```
-ProjDesenvolvWEB2-TestComAPIs/
-│
-├─ index.html       # Página principal com interface para testes de API
-├─ script.js        # Lógica de interação com APIs
-├─ style.css        # Estilos visuais do projeto
-└─ README.md        # Documentação do projeto
-```
-
----
-
-## 🔹 Funcionalidades
-
-### Usuário
-- Criar usuário com nome, telefone e endereço completo.
-- Listar todos os usuários.
-- Buscar usuário por ID.
-
-### Planilha
-- Criar planilha vinculada a um usuário.
-- Listar todas as planilhas.
-- Buscar planilha por ID.
-
-### Comparação
-- Comparar duas planilhas selecionadas.
-- Visualizar histórico e score das comparações.
-- Listar histórico e scores completos ou por ID.
-
----
-
-## 🔹 Visualização dos Resultados
-
-- Resultados podem ser exibidos em **JSON** ou em **formato de tabela legível**.
-- Interface com **abas separadas** para criar usuários, planilhas e comparações, mantendo a tela organizada.
-- Dados complexos e objetos aninhados são renderizados de forma estruturada e fácil de ler.
-
-Exemplo de saída em formato "tabela legível":
-
-**Usuário 1:**
-```
-id: 69c955820d20ea3b8131e3b7
-nome: Rodrigo
-telefone: 16999999999
-Endereço:
-  logradouro: Rua A
-  cidade: Araraquara
-  numero: 123
-  cep: 14800000
-  bairro: Centro
+📁 Projeto
+ ├── 📁 Front-Test
+ │    ├── Index.html
+ │    ├── Script.js
+ │    └── style.css
+ │
+ ├── 📁 LeituraAPI
+ │    ├── controller
+ │    ├── service
+ │    ├── repository
+ │    ├── model
+ │    └── config
 ```
 
 ---
 
-## 🔹 Como Utilizar
+## ⚙️ Como Executar o Projeto
 
-1. Abra o arquivo `index.html` em qualquer navegador moderno.
-2. Use as abas para criar usuários, planilhas e comparações.
-3. Escolha entre visualização em **JSON** ou **Tabela** para facilitar a leitura dos dados.
-4. As ações interagem com os endpoints configurados nas variáveis:
+### 🔹 Backend (Spring Boot)
 
-```javascript
-const APIUsuarios = "http://localhost:8082/myproject/api/v1";
-const APIPlanilhas = "http://localhost:8081/myproject/api/v1";
+```bash
+cd LeituraAPI
+mvn spring-boot:run
+```
+
+A API será iniciada em:
+
+```
+http://localhost:8080
 ```
 
 ---
 
-## 🔹 Observações
+### 🔹 Frontend
 
-- Certifique-se de que os servidores das APIs estão rodando antes de usar a interface.
-- Projeto focado em manipulação de dados JSON aninhados e renderização clara no front-end.
-- Código preparado para testes práticos de APIs REST e visualização de resultados complexos.
+Basta abrir o arquivo:
+
+```
+Front-Test/Index.html
+```
 
 ---
 
-## 🔹 Licença
+## 📡 Endpoints da API
 
-Projeto destinado a fins educacionais e demonstrativos.
+### 📥 Upload de Planilha
+
+```
+POST /myproject/api/v1/importacao/upload
+```
+
+#### 🧾 Form-data:
+
+| Key  | Tipo |
+| ---- | ---- |
+| file | File |
+
+---
+
+### 👤 Criar Usuário
+
+```
+POST /myproject/api/v1/usuarios
+```
+
+#### 📥 Exemplo de JSON:
+
+```json
+{
+  "nome": "Rodrigo",
+  "telefone": "16999999999",
+  "endereco": {
+    "logradouro": "Rua A",
+    "cidade": "Araraquara",
+    "numero": "123",
+    "cep": "14800000",
+    "bairro": "Centro"
+  }
+}
+```
+
+---
+
+### 📋 Buscar Usuários
+
+```
+GET /myproject/api/v1/usuarios
+```
+
+---
+
+### 🔍 Buscar por ID
+
+```
+GET /myproject/api/v1/usuarios/{id}
+```
+
+---
+
+## 📊 Formato da Planilha
+
+A planilha deve seguir exatamente este padrão:
+
+| Nome    | Telefone    | Logradouro | Cidade      | Numero | CEP      | Bairro |
+| ------- | ----------- | ---------- | ----------- | ------ | -------- | ------ |
+| Rodrigo | 16999999999 | Rua A      | Araraquara  | 123    | 14800000 | Centro |
+| Danilo  | 16999999999 | Rua B      | Matão       | 456    | 14800000 | Centro |
+| Felipe  | 16999999999 | Rua C      | Jaboticabal | 789    | 14800000 | Centro |
+
+### ⚠️ Regras importantes:
+
+* A primeira linha deve conter os nomes das colunas
+* Não deixar linhas vazias no meio
+* Seguir a ordem das colunas
+* Arquivo deve ser `.xlsx`
+
+---
+
+## 🔄 Fluxo do Sistema
+
+1. Usuário envia uma planilha pelo frontend
+2. API de leitura processa o arquivo
+3. Dados são convertidos para objetos `Usuario`
+4. API envia os dados para o endpoint de usuários
+5. Usuários são salvos no sistema
+6. Resultado é exibido em JSON e tabela
+
+---
+
+## 🧪 Testando com Swagger / Postman
+
+### 📥 Upload de arquivo
+
+* Método: `POST`
+* URL: `http://localhost:8080/myproject/api/v1/importacao/upload`
+* Body: `form-data`
+* Key: `file`
+* Tipo: File
+
+---
+
+### 👤 Criar usuário manual
+
+```json
+{
+  "nome": "Teste",
+  "telefone": "16988888888",
+  "endereco": {
+    "logradouro": "Rua Teste",
+    "cidade": "São Paulo",
+    "numero": "999",
+    "cep": "01000000",
+    "bairro": "Centro"
+  }
+}
+```
+
+---
+
+## ⚠️ Problemas Comuns
+
+### ❌ API não responde
+
+✔ Verifique se o backend está rodando
+
+---
+
+### ❌ Erro CORS
+
+✔ Verifique configuração de CORS no backend
+
+---
+
+### ❌ Apenas 1 linha sendo lida
+
+✔ Verifique se há linhas vazias na planilha
+
+---
+
+### ❌ Erro ao enviar arquivo
+
+✔ Confirme que o campo no form-data se chama `file`
+
+---
+
+## 🔥 Melhorias Futuras
+
+* ✔ Validação de dados da planilha
+* ✔ Tratamento de erros mais robusto
+* ✔ Interface com feedback visual (loading)
+* ✔ Upload múltiplo de arquivos
+* ✔ Autenticação de usuários
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por Rodrigo Cesar Zacari Junior
+
+---
+
+## 📌 Observações
+
+Este projeto foi desenvolvido para fins acadêmicos, com foco em aprendizado prático de:
+
+* Integração entre sistemas
+* Manipulação de arquivos
+* APIs REST
+* Estruturação de aplicações Spring Boot
+
+---
