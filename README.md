@@ -33,19 +33,27 @@ O sistema foi desenvolvido com foco em simular um cenário real de aplicações 
 ## 📂 Estrutura do Projeto
 
 ```
-📁 Projeto
- ├── 📁 Front-Test
- │    ├── Index.html
- │    ├── Script.js
- │    └── style.css
- │
- ├── 📁 LeituraAPI
- │    ├── controller
- │    ├── service
- │    ├── repository
- │    ├── model
- │    └── config
-```
+📁 ProjDesenvolvWEB2-TestComAPIs
+│
+├── 📁 Front-Test
+│ ├── Index.html # Interface principal
+│ ├── Script.js # Lógica JS (requisições e renderização)
+│ └── style.css # Estilização do sistema
+│
+├── 📁 LeituraAPI
+│ ├── 📁 src/main/java/org/example
+│ │ ├── 📁 controller # Endpoints REST
+│ │ ├── 📁 service # Regras de negócio
+│ │ ├── 📁 repository # Acesso a dados
+│ │ ├── 📁 model # Entidades (Usuario, Endereco)
+│ │ └── 📁 config # Configurações (CORS, Beans)
+│ │
+│ ├── 📁 src/main/resources
+│ │ └── application.properties
+│ │
+│ └── pom.xml # Dependências do projeto
+│
+└── README.md
 
 ---
 
